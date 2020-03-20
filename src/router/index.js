@@ -44,6 +44,12 @@ export const constantRoutes = [
   },
 
   {
+    path: '/test-test',
+    component: () => import('@/views/testTest/index'),
+    hidden: true
+  },
+
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -177,7 +183,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior(to, from, savedPosition) {
     // keep-alive 返回缓存页面后记录浏览位置
     if (savedPosition && to.meta.keepAlive) {

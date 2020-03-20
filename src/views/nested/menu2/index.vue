@@ -1,15 +1,19 @@
 <template>
   <div>
-    Money: {{ getMoney }}
+    Money: {{ price1 }} --- {{ getMoney }} --- {{ getMoney1 }} --- {{ price }}
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'// 辅助函数
 export default {
   computed: {
+    ...mapState({price1:state=>state.cart.price}),
     // getters常规引用方式：
     getMoney() {
-      return this.$store.getters.getMoney
+      return this.$store.state.cart.price
+    },
+    getMoney1() {
+      return this.$store.getters.price
     },
     // getters使用mapGetters方式,有2种方式:
     // 1.使用对象的方式引用,这里可以同时引用多个
@@ -18,15 +22,11 @@ export default {
     // this.getMoneyFromState
 
     // 2.使用名称的方式引用
-    ...mapGetters(['getMoney', 'getMoney2'])
+    ...mapGetters(['price', 'device', 'sidebar', 'token'])
     // 使用时这样调用
     // this.getMoney
   },
   methods: {
-    ...mapState([
-      'count',
-      'price'
-    ]),
     ...mapMutations([
       'updatePrice',
       'updateCount'

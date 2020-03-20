@@ -11,6 +11,7 @@
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
+        @select="handleSelect"
       >
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
@@ -51,6 +52,18 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
-  }
+  },
+  created() {
+    // console.log(this.$router)
+  },
+  methods: {
+    handleSelect(index,indexPath){
+      const { fullPath } = this.$route
+      // console.log(index+"====="+indexPath+'----'+fullPath)
+      this.$router.replace({
+        path: '/redirect' + fullPath
+      })
+    }
+  },
 }
 </script>

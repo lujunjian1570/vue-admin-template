@@ -31,20 +31,20 @@ const externals = {
 const cdn = {
   // 开发环境
   dev: {
-    css: ['https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/theme-chalk/index.css'],
-    js: []
+    css: ['https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css'],
+    js: ['https://cdn.bootcss.com/babel-polyfill/7.8.3/polyfill.min.js']
   },
   // 生产环境
   build: {
-    css: ['https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/theme-chalk/index.css'],
+    css: ['https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css'],
     js: [
-      'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.6/vue-router.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/index.js'
+      'https://cdn.bootcss.com/babel-polyfill/7.8.3/polyfill.min.js',
+      'https://cdn.bootcss.com/vue/2.6.11/vue.min.js',
+      'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
+      'https://cdn.bootcss.com/axios/0.19.2/axios.min.js',
+      'https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js',
+      'https://cdn.bootcss.com/crypto-js/4.0.0/crypto-js.min.js',
+      'https://cdn.bootcss.com/element-ui/2.13.0/index.js'
     ]
   }
 }
@@ -58,7 +58,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: './', //  基本路径
+  publicPath: '/', //  基本路径
   outputDir: 'dist', //  构建时的输出目录
   assetsDir: 'static', //  放置静态资源的目录
   // lintOnSave: process.env.NODE_ENV === 'development', //  是否在保存的时候使用 `eslint-loader` 进行检查
@@ -73,12 +73,13 @@ module.exports = {
     },
     before: require('./mock/mock-server.js'),
     proxy: {
-      '/api': {
-        target: 'https://test.ygzykj.com:1804/api',
+      '/sunsoft-cms': {
+        target: 'https://test.ygzykj.com:1906/sunsoft-cms',
         changeOrigin: true,
-        pathRewrite: { '^/api': '' }
+        pathRewrite: { '^/sunsoft-cms': '' }
       }
-    }
+    },
+    // historyApiFallback: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -107,7 +108,12 @@ module.exports = {
     ],
     externals: process.env.NODE_ENV !== 'development' ? externals : ''
   },
+  // 在exports中添加，这里很关键，不配置不行
+  transpileDependencies: ['element-ui'],
   chainWebpack(config) {
+    // 在chainWebpack中添加下面的代码
+    // config.entry('main').add('babel-polyfill') // main是入口js文件
+    
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
 
