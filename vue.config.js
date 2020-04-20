@@ -58,6 +58,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
+  // publicPath: process.env.NODE_ENV === 'production' ? '/my-web/' : '/', //  基本路径
   publicPath: '/', //  基本路径
   outputDir: 'dist', //  构建时的输出目录
   assetsDir: 'static', //  放置静态资源的目录

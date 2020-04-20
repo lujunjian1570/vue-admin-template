@@ -97,9 +97,9 @@ export default {
     }
   },
   mounted() {
-    getUser().then(res => {
+    /* getUser().then(res => {
       console.log(res.data)
-    })
+    }) */
     /* selectThemeList({
       cmstoken:'ZYVP8eCbGMlDyz89qYul8x06D1p8g6pSNFBh1YBhkSKyYzztaA-T6OwrwwtBRChdFmYZKYuJi4B0DoLOLsWn7w3S6T3WddomEyX_xMFaCPymDWLXa9AZ1WxTIO0phUzmGy5iYC_oEQ-If_xFMqJSkdZUOoPFA4KmjTOlx5Tiwco'
     }).then(res => {

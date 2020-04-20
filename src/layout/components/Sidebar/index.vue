@@ -57,13 +57,13 @@ export default {
     // console.log(this.$router)
   },
   methods: {
-    handleSelect(index,indexPath){
-      const { fullPath } = this.$route
+    handleSelect(index, indexPath) {
+      /* const { fullPath } = this.$route
       // console.log(index+"====="+indexPath+'----'+fullPath)
       this.$router.replace({
         path: '/redirect' + fullPath
-      })
+      })*/
     }
-  },
+  }
 }
 </script>
