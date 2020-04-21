@@ -7,7 +7,7 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'// 辅助函数
 export default {
   computed: {
-    ...mapState({price1:state=>state.cart.price}),
+    ...mapState({ price1: state => state.cart.price }),
     // getters常规引用方式：
     getMoney() {
       return this.$store.state.cart.price

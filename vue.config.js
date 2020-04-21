@@ -107,14 +107,15 @@ module.exports = {
         deleteOriginalAssets: false// 是否删除源文件
       })
     ],
-    externals: process.env.NODE_ENV !== 'development' ? externals : ''
+    externals: process.env.NODE_ENV !== 'development' ? externals : '',
+    devtool: 'source-map'
   },
   // 在exports中添加，这里很关键，不配置不行
   transpileDependencies: ['element-ui'],
   chainWebpack(config) {
     // 在chainWebpack中添加下面的代码
     // config.entry('main').add('babel-polyfill') // main是入口js文件
-    
+
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
 
