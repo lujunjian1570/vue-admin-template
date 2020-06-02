@@ -47,3 +47,25 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+// ie9 message兼容
+.el-message .el-message__content{
+  display: inline-block\0;
+}
+// select框固定下拉箭头兼容ie9
+.el-select .el-input .el-input__suffix .el-icon-arrow-up {
+  -ms-transform: rotate(180deg) \0;
+}
+
+// ie9 el-cascader兼容性问题
+.el-cascader-menu__list .el-cascader-node .el-cascader-node__postfix,
+.el-cascader-menu__list .is-active .el-cascader-node__prefix {
+  top: 10px \0;
+}
+
+// 解决IE9 日期组件样式问题
+.demonstration, .el-date-editor--datetimerange  {
+  display: inline-block  !important;
+  vertical-align: middle;
+  line-height: 24px;
+}

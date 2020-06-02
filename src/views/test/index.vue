@@ -1,83 +1,9 @@
 <template>
   <div class="app-container">
     <div class="app-wrapper">
-      <div>
-        <el-radio-group v-model="radio3">
-          <el-radio :label="3">备选项</el-radio>
-          <el-radio :label="6">备选项</el-radio>
-          <el-radio :label="9">备选项</el-radio>
-          <el-button @click="radioGroupNum">输出el-radio-group选中的值</el-button>
-        </el-radio-group>
-        <div>
-          <el-radio-group v-model="radioGroup">
-            <el-radio :label="3">el-radio-group1</el-radio>
-            <el-radio :label="6">el-radio-group2</el-radio>
-            <el-button @click="radioGroupNum">输出el-radio-group选中的值</el-button>
-          </el-radio-group>
-        </div>
-        <div style="margin-bottom:20px" />
-        <div>
-          <el-radio v-model="radioTest" label="1">Vue</el-radio>
-          <el-radio v-model="radioTest" label="2">React</el-radio>
-          <el-radio v-model="radioTest" label="3" disabled>App（禁用）</el-radio>
-          <el-button @click="radioNum">输出radio选中的值</el-button>
-        </div>
-        <div style="margin-bottom:20px" />
-        <el-row>
-          <el-button>默认按钮</el-button>
-          <el-button type="primary">主要按钮</el-button>
-          <el-button type="success">成功按钮</el-button>
-          <el-button type="info">信息按钮</el-button>
-          <el-button type="warning">警告按钮</el-button>
-          <el-button type="danger">危险按钮</el-button>
-        </el-row>
-        <div style="margin-bottom:20px" />
-        <el-row type="flex" justify="space-between">
-          <el-col :span="3">
-            <div class="row-col bg" />
-          </el-col>
-          <el-col :span="16">
-            <div class="row-col bg1">将 type 属性赋值为 'flex'，可以启用 flex 布局，并可通过 justify 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。</div>
-          </el-col>
-          <el-col :span="3">
-            <div class="row-col bg" />
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="6">
-            <div class="row-col bg">给row设置gutter属性间隔20px。span6</div>
-          </el-col>
-          <el-col :span="12" :offset="6">
-            <div class="row-col bg1">通过制定 col 组件的 offset 属性可以指定分栏偏移的栏数span12</div>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="20">
-            <div class="row-col bg">给row设置gutter属性间隔20px。span20</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="row-col bg1">span4</div>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <div class="row-col bg">设置col的属性span，两等分</div>
-          </el-col>
-          <el-col :span="12">
-            <div class="row-col bg1">两等分</div>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <div class="row-col bg">默认24</div>
-          </el-col>
-        </el-row>
-      </div>
-      <div>
-        <el-button @click="changePrice(10)">更改价格</el-button>
-      </div>
-      <test-test post-title="bbbb" :post-content="content" @post-click="postClick" />
-      <svg-icon icon-class="link" class-name="svgColor" />
+      <h1 class="h1-msg">测试拉拉法拉第</h1>
+      <test-test post-title="bbbb" :post-content="content" @post-click="postClick"></test-test>
+      <svg-icon icon-class="link" class-name="svgColor"/>
       <span>{{ message }}</span>
       <span v-once>{{ message }}</span>
       <el-button class="btn" @[eventName].prevent="btnClick">点击</el-button>
@@ -89,7 +15,7 @@
       </ul>
       <el-button @click="pushClick">pushClick</el-button>
       <br>
-      <svg-icon icon-class="user" class-name="svgColor" />
+      <svg-icon icon-class="user" class-name="svgColor"/>
       <input v-model="message">
       <p>{{ rawHtml }}</p>
       <p v-html="rawHtml">222</p>
@@ -135,7 +61,7 @@
       </ul>
       <input v-model="message" placeholder="edit me">
       <p>Message is: {{ message }}</p>
-      <textarea v-model="message" placeholder="add multiple lines" />
+      <textarea v-model="message" placeholder="add multiple lines"/>
       <p style="white-space: pre-line;">{{ message }}</p>
       <input id="checkbox1" v-model="checked" type="checkbox">
       <label for="checkbox1">{{ checked }}</label>
@@ -175,177 +101,173 @@
       <input v-model="radio" type="radio" :value="radio1">
       <span>{{ radio }}</span>
       <!-- slot {{ message }} -->
-
       {{ object.title }}
+
+
       <p>
         <el-button @click="openMessage">点击弹出message</el-button>
       </p>
-      <img v-lazy="picUrl" class="item-pic">
+      <div>
+        <el-button @click="changePrice(10)">更改价格</el-button>
+      </div>
+      <br/>
+      图片懒加载：<br/>
+      <img v-lazy="picUrl" class="item-pic"><br/>
+      背景图片懒加载：<br/>
+      <div v-lazy:background-image="picUrl" style="width: 1300px;height: 380px;"></div>
+      <back-to-top/>
     </div>
   </div>
 </template>
 
 <script>
-// import { Message } from 'element-ui'
-import TestTest from '@/components/TestTest'
-export default {
-  name: 'Test',
-  components: {
-    TestTest
-  },
-  mixins: [],
-  props: {},
-  data() {
-    return {
-      radio3: 3,
-      radioGroup: '3',
-      radioTest: '1',
-      message: '123',
-      dynamicId: 'idid',
-      isBtnDisabled: false,
-      seen: true,
-      aHref: 'http://www.baidu.com',
-      attributeName: 'href',
-      eventName: 'click',
-      todos: [{ text: 'abc' }, { text: 'def' }, { text: 'ghi' }],
-      rawHtml: '<span style="color: red">This should be red.</span>',
-      isActive: true,
-      classObject: {
-        active: true,
-        text: false
-      },
-      activeClass: 'active',
-      errorClass: 'error',
-      activeColor: 'red',
-      styleClass: {
-        color: 'blue'
-      },
-      styleClassTwo: {
-        fontSize: '20px'
-      },
-      show: true,
-      loginType: 'username',
-      object: {
-        title: 'How to do lists in Vue',
-        author: 'Jane Doe',
-        publishedAt: '2016-04-10'
-      },
-      numbers: [1, 2, 3, 4, 5],
-      checked: '',
-      checkedNames: [],
-      picked: '',
-      selected: '',
-      selected1: 'A',
-      options: [
-        { text: 'One', value: 'A' },
-        { text: 'Two', value: 'B' },
-        { text: 'Three', value: 'C' }
-      ],
-      radio: 'radio',
-      radio1: 'radio1',
-      content: 'contentContent',
-      picUrl:
-        'https://xfom.ygzykj.com/pic/uniformpic/e4588e3866bd479485b04b153df3e030.png!m1300x380.jpg'
-    }
-  },
-  computed: {
-    reversedMessage() {
-      return this.message
-        .split('')
-        .reverse()
-        .join('')
-    },
-    classObjectComputed() {
-      return this.dynamicId + ' jkl'
-    }
-  },
-  watch: {},
-  mounted() {
-    this.message = 'abc'
-  },
-  methods: {
-    radioGroupNum() {
-      this.$message('选中的值为：' + this.radioGroup)
-    },
-    radioNum() {
-      this.$message('选中的值为：' + this.radioTest)
-    },
-    btnClick() {
-      this.message = 'dce'
-      this.show = !this.show
-    },
-    toggle() {
-      this.loginType = this.loginType === 'username' ? '' : 'username'
-    },
-    pushClick() {
-      // this.todos.push({ text: 'push' })
-      // this.todos.pop()// 删除并返回数组的最后一个元素
-      // this.todos.shift()// 删除并返回数组的第一个元素
-      // this.todos.unshift({ text: 'jkl' })// 向数组的开头添加一个或更多元素,并返回新的长度
-      this.todos.splice(0, 1, { text: 'splice' }) // 通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组
-    },
-    funSet() {
-      // Vue 不能检测对象属性的添加或删除。可以使用 vm.$set 实例方法，它只是全局 Vue.set 的别名
+  import {Message} from 'element-ui'
+  import TestTest from '@/components/TestTest'
+  import BackToTop from '@/components/BackToTop'
 
-      // 为已有对象赋值单个新属性
-      // this.$set(this.object,'name','set')
-      // 为已有对象赋值多个新属性
-      this.object = Object.assign({}, this.object, {
-        sex: '1',
-        address: 'address'
-      })
+  export default {
+    name: 'Test',
+    components: {
+      TestTest,
+      BackToTop
     },
-    even(numbers) {
-      return numbers.filter(function(number) {
-        return number % 2 === 0
-      })
+    mixins: [],
+    props: {},
+    data() {
+      return {
+        message: '123',
+        dynamicId: 'idid',
+        isBtnDisabled: false,
+        seen: true,
+        aHref: 'http://www.baidu.com',
+        attributeName: 'href',
+        eventName: 'click',
+        todos: [{text: 'abc'}, {text: 'def'}, {text: 'ghi'}],
+        rawHtml: '<span style="color: red">This should be red.</span>',
+        isActive: true,
+        classObject: {
+          active: true,
+          text: false
+        },
+        activeClass: 'active',
+        errorClass: 'error',
+        activeColor: 'red',
+        styleClass: {
+          color: 'blue'
+        },
+        styleClassTwo: {
+          fontSize: '20px'
+        },
+        show: true,
+        loginType: 'username',
+        object: {
+          title: 'How to do lists in Vue',
+          author: 'Jane Doe',
+          publishedAt: '2016-04-10'
+        },
+        numbers: [1, 2, 3, 4, 5],
+        checked: '',
+        checkedNames: [],
+        picked: '',
+        selected: '',
+        selected1: 'A',
+        options: [
+          {text: 'One', value: 'A'},
+          {text: 'Two', value: 'B'},
+          {text: 'Three', value: 'C'}
+        ],
+        radio: 'radio',
+        radio1: 'radio1',
+        content: 'contentContent',
+        picUrl:
+          'https://xfom.nxeduyun.com/pic/uniformpic/2ffae3c34b934029af17323d730532ae.png!m1300x380.jpg'
+      }
     },
-    postClick(v) {
-      this.content = v
+    computed: {
+      reversedMessage() {
+        return this.message
+          .split('')
+          .reverse()
+          .join('')
+      },
+      classObjectComputed() {
+        return this.dynamicId + ' jkl'
+      }
     },
-    openMessage() {
-      this.$message({
-        message: '提示信息的内容',
-        type: 'error',
-        duration: 3 * 1000
-      })
+    watch: {},
+    mounted() {
+      this.message = 'abc'
     },
-    changePrice(price) {
-      this.$store.dispatch('cart/changePrice', price).then(() => {
-        this.$message({
-          message: '价格更改成功！',
-          type: 'success',
+    methods: {
+      btnClick() {
+        this.message = 'dce'
+        this.show = !this.show
+      },
+      toggle() {
+        this.loginType = this.loginType === 'username' ? '' : 'username'
+      },
+      pushClick() {
+        // this.todos.push({ text: 'push' })
+        // this.todos.pop()// 删除并返回数组的最后一个元素
+        // this.todos.shift()// 删除并返回数组的第一个元素
+        // this.todos.unshift({ text: 'jkl' })// 向数组的开头添加一个或更多元素,并返回新的长度
+        this.todos.splice(0, 1, {text: 'splice'}) // 通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组
+      },
+      funSet() {
+        // Vue 不能检测对象属性的添加或删除。可以使用 vm.$set 实例方法，它只是全局 Vue.set 的别名
+
+        // 为已有对象赋值单个新属性
+        // this.$set(this.object,'name','set')
+        // 为已有对象赋值多个新属性
+        this.object = Object.assign({}, this.object, {
+          sex: '1',
+          address: 'address'
+        })
+      },
+      even(numbers) {
+        return numbers.filter(function (number) {
+          return number % 2 === 0
+        })
+      },
+      postClick(v) {
+        this.content = v
+      },
+      openMessage() {
+        Message({
+          message: '提示信息的内容',
+          type: 'error',
           duration: 3 * 1000
         })
-      })
+      },
+      changePrice(price) {
+        this.$store.dispatch('cart/changePrice', price).then(() => {
+          Message({
+            message: '价格更改成功！',
+            type: 'success',
+            duration: 3 * 1000
+          })
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-.app-wrapper {
-  padding-bottom: 100px;
-  .btn {
-    font-size: 20px;
-  }
-  .svgColor {
-    color: red;
-    width: 50px;
-    height: 50px;
-  }
-  .row-col{
-    min-height: 36px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #fff;
-    line-height: 36px;
-    &.bg{
-      background-color: #99a9bf;
+  .app-wrapper {
+    padding-bottom: 100px;
+    .h1-msg{
+      font-size: 14px;
+      color: $color_msg;
     }
-    &.bg1{
-      background-color: #5a6d88;
+
+    .btn {
+      /*font-size: 20px;*/
+    }
+
+    .svgColor {
+      color: red;
+      width: 50px;
+      height: 50px;
     }
   }
-}
 </style>

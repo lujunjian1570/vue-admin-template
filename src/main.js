@@ -2,9 +2,7 @@ import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-// import '@/utils/element-ui.js'
-
-import ElementUI from 'element-ui'
+// import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
@@ -20,6 +18,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 import Http from '@/utils/http.js'
+import '@/utils/element-ui.js'
 
 /**
  * If you don't want to use mock-server
@@ -29,20 +28,20 @@ import Http from '@/utils/http.js'
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-/* if (process.env.NODE_ENV === 'production') {
+ if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
-} */
+}
 
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
-Vue.use(ElementUI)
+// Vue.use(ElementUI)
 
 // 图片懒加载
 Vue.use(VueLazyLoad, {
-  error: require('@/assets/404_images/404_cloud.png'),
-  loading: require('@/assets/404_images/404_cloud.png')
+  // error: require('@/assets/404_images/404_cloud.png'),
+  // loading: require('@/assets/404_images/404_cloud.png')
 })
 
 // 把Http挂载到Vue实例上

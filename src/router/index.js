@@ -57,7 +57,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
     }]
   },
 
@@ -83,7 +83,7 @@ export const constantRoutes = [
     ]
   },
 
-  {
+  /*{
     path: '/form',
     component: Layout,
     children: [
@@ -109,6 +109,7 @@ export const constantRoutes = [
       {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        redirect: '/nested/menu1/menu1-1',
         name: 'Menu1',
         meta: { title: 'Menu1' },
         children: [
@@ -121,6 +122,7 @@ export const constantRoutes = [
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
+            redirect: '/nested/menu1/menu1-2/menu1-2-1',
             name: 'Menu1-2',
             meta: { title: 'Menu1-2' },
             children: [
@@ -149,10 +151,11 @@ export const constantRoutes = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
+        name: 'Menu2',
         meta: { title: 'menu2' }
       }
     ]
-  },
+  },*/
 
   {
     path: '/test',
@@ -162,7 +165,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Test',
         component: () => import('@/views/test/index'),
-        meta: { title: 'Test', icon: 'tool' }
+        meta: { title: 'Test', icon: 'user' }
       }
     ]
   },
@@ -179,23 +182,23 @@ export const constantRoutes = [
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  mode: 'history', // require service support
+  // mode: 'history', // require service support
   scrollBehavior(to, from, savedPosition) {
     // keep-alive 返回缓存页面后记录浏览位置
     if (savedPosition && to.meta.keepAlive) {
-      return savedPosition
+     return savedPosition
     }
     // 异步滚动操作
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ x: 0, y: 0 })
-      }, 0)
+     setTimeout(() => {
+      resolve({ x: 0, y: 0 })
+     }, 0)
     })
-  },
+   },
   routes: constantRoutes
 })
 

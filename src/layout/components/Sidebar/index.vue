@@ -11,9 +11,8 @@
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
-        @select="handleSelect"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -29,11 +28,12 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'permission_routes'
     ]),
-    routes() {
+    /*routes() {
       return this.$router.options.routes
-    },
+    },*/
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -51,18 +51,6 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
-    }
-  },
-  created() {
-    // console.log(this.$router)
-  },
-  methods: {
-    handleSelect(index, indexPath) {
-      /* const { fullPath } = this.$route
-      // console.log(index+"====="+indexPath+'----'+fullPath)
-      this.$router.replace({
-        path: '/redirect' + fullPath
-      })*/
     }
   }
 }
