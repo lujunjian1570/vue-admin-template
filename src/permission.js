@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/test'] // no redirect whitelist
+const whiteList = ['/login', '/test1', '/test2'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -34,7 +34,7 @@ router.beforeEach(async(to, from, next) => {
           // get user info
           await store.dispatch('user/getInfo').then(res => {
             store.dispatch('GenerateRoutes').then(accessRoutes => {
-              // 根据roles权限生成可访问的路由表
+              // 生成可访问的路由表
               router.addRoutes(accessRoutes) // 动态添加可访问路由表
               next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
             })

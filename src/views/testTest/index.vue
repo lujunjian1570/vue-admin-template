@@ -20,7 +20,7 @@ export default {
   },
   mounted() {
     selectThemeList({
-      cmstoken: 'ZYVP8eCbGMlDyz89qYul8x06D1p8g6pSNFBh1YBhkSKyYzztaA-T6OwrwwtBRChdFmYZKYuJi4B0DoLOLsWn7w3S6T3WddomEyX_xMFaCPymDWLXa9AZ1WxTIO0phUzmGy5iYC_oEQ-If_xFMqJSkdZUOoPFA4KmjTOlx5Tiwco'
+      cmstoken: 'rKdzOSqkVIAwD2FvLoS0tXbAhFpkU9invdG3JtknXFX4-uGTVTauN1yvPFI0B-DlfT7rsERa7StT-LzP9DteBC6X7fDDIg7JCdpDNxSITJoArq9_emOcrEmLUkDuSOfZEmhTrC2X1LsUWVf9NqIXNg5polmRL6ZBmqRZAuWYiys'
     }).then(res => {
       console.log(res)
       this.picUrl = res.obj[res.obj.length - 1].viewImg

@@ -11,7 +11,9 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // 定义压缩文件类型
 const productionGzipExtensions = ['js', 'css']
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title // page title
+
+const isProd = process.env.NODE_ENV === 'production'
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -31,20 +33,20 @@ const externals = {
 const cdn = {
   // 开发环境
   dev: {
-    css: ['https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/theme-chalk/index.css'],
-    js: []
+    css: ['https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css'],
+    js: ['https://cdn.bootcss.com/babel-polyfill/7.8.3/polyfill.min.js']
   },
   // 生产环境
   build: {
-    css: ['https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/theme-chalk/index.css'],
+    css: ['https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css'],
     js: [
-      'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.6/vue-router.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/index.js'
+      'https://cdn.bootcss.com/babel-polyfill/7.8.3/polyfill.min.js',
+      'https://cdn.bootcss.com/vue/2.6.11/vue.min.js',
+      'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
+      'https://cdn.bootcss.com/axios/0.19.2/axios.min.js',
+      'https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js',
+      'https://cdn.bootcss.com/crypto-js/4.0.0/crypto-js.min.js',
+      'https://cdn.bootcss.com/element-ui/2.13.0/index.js'
     ]
   }
 }
@@ -73,10 +75,10 @@ module.exports = {
     },
     before: require('./mock/mock-server.js'),
     proxy: {
-      '/api': {
-        target: 'https://test.ygzykj.com:1804/api',
+      '/sunsoft-cms': {
+        target: 'https://test.ygzykj.com:1906/sunsoft-cms',
         changeOrigin: true,
-        pathRewrite: { '^/api': '' }
+        pathRewrite: { '^/sunsoft-cms': '' }
       }
     }
   },
@@ -105,17 +107,19 @@ module.exports = {
         deleteOriginalAssets: false// 是否删除源文件
       })
     ],
-    externals: externals
+    externals: isProd ? externals : ''
   },
   chainWebpack(config) {
-    config.plugins.delete('preload') // TODO: need test
-    config.plugins.delete('prefetch') // TODO: need test
+    // 移除 preload 插件
+    config.plugins.delete('preload')
+    // 移除 prefetch 插件
+    config.plugins.delete('prefetch')
 
     /**
      * 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
      */
     config.plugin('html').tap(args => {
-      if (process.env.NODE_ENV !== 'development1') {
+      if (isProd) {
         args[0].cdn = cdn.build
       } else {
         args[0].cdn = cdn.dev

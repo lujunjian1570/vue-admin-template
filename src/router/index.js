@@ -44,7 +44,13 @@ export const constantRoutes = [
   },
 
   {
-    path: '/test-test',
+    path: '/test1',
+    component: () => import('@/views/test/index'),
+    hidden: true
+  },
+
+  {
+    path: '/test2',
     component: () => import('@/views/testTest/index'),
     hidden: true
   },
@@ -171,11 +177,24 @@ export const constantRoutes = [
   },
 
   {
+    path: '/test-test',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'TestTest',
+        component: () => import('@/views/testTest/index'),
+        meta: { title: 'TestTest', icon: 'user' }
+      }
+    ]
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        path: 'https://www.baidu.com',
         meta: { title: 'External Link', icon: 'link' }
       }
     ]

@@ -40,8 +40,8 @@ import '@/utils/element-ui.js'
 
 // 图片懒加载
 Vue.use(VueLazyLoad, {
-  // error: require('@/assets/404_images/404_cloud.png'),
-  // loading: require('@/assets/404_images/404_cloud.png')
+  // error: require('@/assets/images/logo.png'),
+  // loading: require('@/assets/images/logo.png')
 })
 
 // 把Http挂载到Vue实例上
