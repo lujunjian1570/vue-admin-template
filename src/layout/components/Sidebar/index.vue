@@ -31,7 +31,7 @@ export default {
       'sidebar',
       'permission_routes'
     ]),
-    /*routes() {
+    /* routes() {
       return this.$router.options.routes
     },*/
     activeMenu() {

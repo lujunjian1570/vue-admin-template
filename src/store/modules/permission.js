@@ -19,7 +19,7 @@ const permission = {
       return new Promise(resolve => {
         // 向后端请求路由数据
         getList().then(res => {
-          let d = [{
+          const d = [{
             path: '/form',
             component: 'Layout',
             children: [
@@ -30,7 +30,7 @@ const permission = {
                 meta: { title: 'Form', icon: 'form' }
               }
             ]
-          },{
+          }, {
             path: '/nested',
             component: 'Layout',
             redirect: '/nested/menu1',
@@ -117,6 +117,6 @@ function filterAsyncRouter(asyncRouterMap) {
   })
 }
 export const loadView = (view) => { // 路由懒加载
-  return (resolve) =>  require([`@/views/${view}`], resolve)
+  return (resolve) => require([`@/views/${view}`], resolve)
 }
 export default permission

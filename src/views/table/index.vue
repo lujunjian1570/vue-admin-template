@@ -77,13 +77,13 @@ export default {
   methods: {
     getList() {
       // this.listLoading = true
-       getArticleList(this.listQuery).then(response => {
-         this.list = response.data.items
-         this.total = response.data.total
-         // this.listLoading = false
+      getArticleList(this.listQuery).then(response => {
+        this.list = response.data.items
+        this.total = response.data.total
+        // this.listLoading = false
       })
     }
-    /*async getList() {
+    /* async getList() {
       const res = await this.$Http.getTableList()
       this.list = res.items
       this.total = res.total
