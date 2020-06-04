@@ -19,6 +19,7 @@ import '@/permission' // permission control
 
 import Http from '@/utils/http.js'
 import '@/utils/element-ui.js'
+import Api from '@/api'
 
 /**
  * If you don't want to use mock-server
@@ -46,6 +47,7 @@ Vue.use(VueLazyLoad, {
 
 // 把Http挂载到Vue实例上
 Vue.prototype.$Http = Http
+Vue.prototype.$Api = Api
 
 Vue.config.productionTip = false
 
