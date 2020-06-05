@@ -13,7 +13,7 @@ const BASE_API = {
     return request({
       url: '/vue-admin-template/user/info',
       method: 'get',
-      params: {token}
+      params: { token }
     })
   },
 
@@ -23,7 +23,7 @@ const BASE_API = {
       method: 'post'
     })
   },
-  //获取左侧导航数据
+  // 获取左侧导航数据
   getNavList(params) {
     return request({
       url: '/vue-admin-template/table/getNavList',

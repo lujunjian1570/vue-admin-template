@@ -1,4 +1,4 @@
-import Vue from "vue"
+import Vue from 'vue'
 import { constantRoutes } from '@/router'
 import Layout from '@/layout'
 
