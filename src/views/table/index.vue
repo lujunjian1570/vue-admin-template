@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { getArticleList } from '@/api'
+// import { getArticleList } from '@/api'
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -77,7 +77,7 @@ export default {
   methods: {
     getList() {
       // this.listLoading = true
-      getArticleList(this.listQuery).then(response => {
+      this.$Http.getArticleList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // this.listLoading = false

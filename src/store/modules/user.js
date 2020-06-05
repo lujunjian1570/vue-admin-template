@@ -1,5 +1,4 @@
 import Vue from 'vue'
-// import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -32,13 +31,10 @@ const mutations = {
 
 const actions = {
   // user login
-  async login({ commit }, userInfo) {
+  login({ commit }, userInfo) {
     const { username, password } = userInfo
-    const data = await _this.$Http.login({ username: username.trim(), password: password })
-    commit('SET_TOKEN', data.token)
-    setToken(data.token)
-    /* return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+    return new Promise((resolve, reject) => {
+      _this.$Http.login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -46,17 +42,13 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
-    }) */
+    })
   },
 
   // get user info
-  async getInfo({ commit, state }) {
-    const data = await _this.$Http.getInfo({ token: state.token })
-    const { name, avatar } = data
-    commit('SET_NAME', name)
-    commit('SET_AVATAR', avatar)
-    /* return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      _this.$Http.getInfo(state.token).then(response => {
         const { data } = response
 
         if (!data) {
@@ -71,17 +63,13 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
-    })*/
+    })
   },
 
   // user logout
-  async logout({ commit, state }) {
-    await _this.$Http.logout()
-    removeToken() // must remove  token  first
-    resetRouter()
-    commit('RESET_STATE')
-    /* return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+  logout({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      _this.$Http.logout(state.token).then(() => {
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
@@ -89,7 +77,7 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
-    }) */
+    })
   },
 
   // remove token
