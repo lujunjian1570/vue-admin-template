@@ -120,7 +120,6 @@
 </template>
 
 <script>
-import { Message } from 'element-ui'
 import TestTest from '@/components/TestTest'
 import BackToTop from '@/components/BackToTop'
 
@@ -232,7 +231,7 @@ export default {
       this.content = v
     },
     openMessage() {
-      Message({
+      this.$message({
         message: '提示信息的内容',
         type: 'error',
         duration: 3 * 1000
@@ -240,7 +239,7 @@ export default {
     },
     changePrice(price) {
       this.$store.dispatch('cart/changePrice', price).then(() => {
-        Message({
+        this.$message({
           message: '价格更改成功！',
           type: 'success',
           duration: 3 * 1000

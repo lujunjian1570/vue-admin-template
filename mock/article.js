@@ -18,7 +18,7 @@ for (let i = 0; i < count; i++) {
     forecast: '@float(0, 100, 2, 2)',
     importance: '@integer(1, 3)',
     'type|1': ['CN', 'US', 'JP', 'EU'],
-    'status|1': ['published', 'draft'],
+    'status|1': ['published', 'draft', 'deleted'],
     display_time: '@datetime',
     comment_disabled: true,
     pageviews: '@integer(300, 5000)',
@@ -26,18 +26,25 @@ for (let i = 0; i < count; i++) {
     platforms: ['a-platform']
   }))
 }
+function tab(date1,date2){
+  const oDate1 = new Date(date1);
+  const oDate2 = new Date(date2);
+  return oDate2 - oDate1
+}
 
 export default [
   {
     url: '/vue-admin-template/article/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const { importance, status, author, page = 1, limit = 20, sort, startTime, endTime } = config.query
 
       let mockList = List.filter(item => {
         if (importance && item.importance !== +importance) return false
-        if (type && item.type !== type) return false
-        if (title && item.title.indexOf(title) < 0) return false
+        if (status && item.status !== status) return false
+        if (author && item.author.indexOf(author) < 0) return false
+        if (startTime && tab(startTime,item.display_time) < 0) return false
+        if (endTime && tab(item.display_time,endTime) < 0) return false
         return true
       })
 

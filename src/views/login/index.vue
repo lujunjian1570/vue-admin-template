@@ -68,20 +68,22 @@
 <script>
 
 import { validUsername } from '@/utils/validate'
+// import {Loading, MessageBox} from "@/utils/element-ui";
+// import store from "@/store";
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+        callback(new Error('请输入符合要求的用户名'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码长度需大于六位'))
       } else {
         callback()
       }
@@ -107,6 +109,21 @@ export default {
       },
       immediate: true
     }
+  },
+  mounted() {
+    // this.$message.error('adsf')
+    /* this.$loading({
+      lock: true, // 锁定屏幕的滚动
+      text: '拼命加载中...',
+      background: 'rgba(255,255,255,0.5)'// 遮罩背景色
+    })*/
+    /* this.$msgbox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
+      confirmButtonText: 'Re-Login',
+      cancelButtonText: 'Cancel',
+      type: 'warning'
+    }).then(() => {
+      this.$message.error('adsf')
+    })*/
   },
   methods: {
     showPwd() {

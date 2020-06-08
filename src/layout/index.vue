@@ -5,7 +5,7 @@
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-        <tags-view />
+        <tags-view v-if="showTagsView" />
       </div>
       <app-main />
     </div>
@@ -34,6 +34,9 @@ export default {
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader
+    },
+    showTagsView() {
+      return this.$store.state.settings.showTagsView
     },
     classObj() {
       return {

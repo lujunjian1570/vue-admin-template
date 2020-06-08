@@ -1,14 +1,15 @@
+import Vue from 'vue'
 import axios from 'axios'
-import { Loading, MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// 创建axios实例
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 10000 // request timeout
+  baseURL: process.env.VUE_APP_BASE_API,
+  timeout: 10000 // 超时时间
 })
+
+const _this = Vue.prototype
 
 // 内存中正在请求的数量
 let loadingNum = 0
@@ -18,7 +19,7 @@ let loading
 // 开始的loading
 function startLoading() {
   if (loadingNum === 0) {
-    loading = Loading.service({
+    loading = _this.$loading({
       lock: true, // 锁定屏幕的滚动
       text: '拼命加载中...',
       background: 'rgba(255,255,255,0.5)'// 遮罩背景色
@@ -39,14 +40,14 @@ function endLoading() {
 
 // 提示信息
 function promptMessage(msg) {
-  Message({
+  _this.$message({
     message: msg,
     type: 'error',
     duration: 3 * 1000
   })
 }
 
-// request interceptor
+// request拦截器
 service.interceptors.request.use(
   config => {
     // 发起请求前做些什么
@@ -57,10 +58,8 @@ service.interceptors.request.use(
     }
 
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     return config
   },
@@ -71,22 +70,20 @@ service.interceptors.request.use(
   }
 )
 
-// response interceptor
+// respone拦截器
 service.interceptors.response.use(
   response => {
     endLoading()
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
       promptMessage(res.message)
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
+      // 401:未登录;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
+        _this.$msgbox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {
