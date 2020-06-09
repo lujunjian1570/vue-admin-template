@@ -67,7 +67,6 @@
 
 <script>
 
-import { validUsername } from '@/utils/validate'
 // import {Loading, MessageBox} from "@/utils/element-ui";
 // import store from "@/store";
 
@@ -75,7 +74,7 @@ export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (!this.$Utils.validUsername(value)) {
         callback(new Error('请输入符合要求的用户名'))
       } else {
         callback()

@@ -1,6 +1,4 @@
 import Mock from 'mockjs'
-import { param2Obj } from '../src/utils'
-
 import user from './user'
 import table from './table'
 import article from './article'
@@ -10,6 +8,22 @@ const mocks = [
   ...table,
   ...article
 ]
+
+const param2Obj = (url) => {
+  const search = url.split('?')[1]
+  if (!search) {
+    return {}
+  }
+  return JSON.parse(
+    '{"' +
+    decodeURIComponent(search)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"')
+      .replace(/\+/g, ' ') +
+    '"}'
+  )
+}
 
 // for front mock
 // please use it cautiously, it will redefine XMLHttpRequest,

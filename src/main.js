@@ -20,6 +20,8 @@ import '@/permission'
 import '@/utils/element-ui.js'
 
 import Http from '@/api'
+import Utils from '@/utils'
+
 import Pagination from '@/components/Pagination'
 
 // mock模拟数据
@@ -39,8 +41,9 @@ Vue.use(VueLazyLoad, {
   // loading: require('@/assets/images/logo.png')
 })
 
-// 把Http挂载到Vue实例上
+// 挂载到Vue实例上
 Vue.prototype.$Http = Http
+Vue.prototype.$Utils = Utils
 
 // 全局组件挂载
 Vue.component('Pagination', Pagination)

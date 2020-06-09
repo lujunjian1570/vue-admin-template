@@ -157,12 +157,12 @@ module.exports = {
 
     config
     // https://webpack.js.org/configuration/devtool/#development
-      .when(process.env.NODE_ENV === 'development',
+      .when(!isProd,
         config => config.devtool('source-map')
       )
 
     config
-      .when(process.env.NODE_ENV !== 'development',
+      .when(isProd,
         config => {
           config
             .plugin('ScriptExtHtmlWebpackPlugin')
