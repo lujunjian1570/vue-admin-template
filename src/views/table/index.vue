@@ -6,7 +6,6 @@
           v-model="listQuery.author"
           placeholder="请输入作者"
           clearable
-          size="small"
           style="width: 240px"
           @keyup.enter.native="handleQuery"
         />
@@ -16,7 +15,6 @@
           v-model="listQuery.status"
           placeholder="使用状态"
           clearable
-          size="small"
           style="width: 240px"
         >
           <el-option
@@ -30,7 +28,6 @@
       <el-form-item label="创建时间：">
         <el-date-picker
           v-model="dateRange"
-          size="small"
           style="width: 240px"
           value-format="yyyy-MM-dd"
           type="daterange"
@@ -40,8 +37,8 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
+        <el-button icon="el-icon-refresh" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -91,14 +88,12 @@
       >
         <template slot-scope="scope">
           <el-button
-            size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
           >修改</el-button>
           <el-button
             v-if="scope.row.userId !== 1"
-            size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
@@ -113,12 +108,12 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="作者：" prop="author">
-              <el-input v-model="form.author" size="small" placeholder="请输入作者" />
+              <el-input v-model="form.author" placeholder="请输入作者" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="状态：">
-              <el-select v-model="form.status" size="small" placeholder="请选择">
+              <el-select v-model="form.status" placeholder="请选择">
                 <el-option
                   v-for="item in statusOptions"
                   :key="item.value"
@@ -130,14 +125,14 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="标题：">
-              <el-input v-model="form.title" type="textarea" size="small" placeholder="请输入内容" />
+              <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" size="mini" @click="submitForm">确 定</el-button>
-        <el-button size="mini" @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
   </div>

@@ -5,10 +5,13 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-      <screenfull id="screenfull" class="right-menu-item hover-effect" />
+      <screen-full id="screenfull" class="right-menu-item hover-effect" />
+      <el-tooltip content="布局大小" effect="dark" placement="bottom">
+        <size-select id="size-select" class="right-menu-item hover-effect" />
+      </el-tooltip>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="avatar" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -33,13 +36,15 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import Screenfull from '@/components/Screenfull'
+import ScreenFull from '@/components/Screenfull'
+import SizeSelect from '@/components/SizeSelect'
 
 export default {
   components: {
     Breadcrumb,
     Hamburger,
-    Screenfull
+    ScreenFull,
+    SizeSelect
   },
   computed: {
     ...mapGetters([
@@ -66,6 +71,7 @@ export default {
     position: relative;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    z-index: 1;
 
     .hamburger-container {
       line-height: 46px;

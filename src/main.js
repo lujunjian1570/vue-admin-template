@@ -8,6 +8,8 @@ import 'normalize.css/normalize.css'
 
 import VueLazyLoad from 'vue-lazyload'
 
+import Cookies from 'js-cookie'
+
 import '@/styles/index.scss'
 
 import App from './App'
@@ -18,6 +20,8 @@ import '@/icons'
 import '@/permission'
 
 import '@/utils/element-ui.js'
+
+import Element from 'element-ui'
 
 import Http from '@/api'
 import Utils from '@/utils'
@@ -35,6 +39,9 @@ if (process.env.NODE_ENV === 'production') {
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+Vue.use(Element, {
+  size: Cookies.get('size') || 'small' // set element-ui default size
+})
 
 // 图片懒加载
 Vue.use(VueLazyLoad, {

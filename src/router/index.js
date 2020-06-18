@@ -33,6 +33,18 @@ import Layout from '@/layout'
  */
 export const constantRoutes = [
   {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+
+  {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true,
@@ -67,6 +79,20 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard', affix: true }
     }]
+  },
+
+  {
+    path: '/tool',
+    component: Layout,
+    redirect: '/tool/formGenerator',
+    children: [
+      {
+        path: 'index',
+        name: 'FormGenerator',
+        component: () => import('@/views/tool/formGenerator'),
+        meta: { title: '创建表单', icon: 'tool' }
+      }
+    ]
   },
 
   {
