@@ -5,6 +5,7 @@
         <el-button @click="changePrice(10)">更改价格</el-button>
       </div>
       <h1 class="h1-msg">测试拉拉法拉第</h1>
+      <el-button type="text" @click="goTo">测试跳转</el-button>
       <test-test post-title="bbbb" :post-content="content" @post-click="postClick" />
       <svg-icon icon-class="link" class-name="svgColor" />
       <span>{{ message }}</span>
@@ -121,13 +122,11 @@
 
 <script>
 import TestTest from '@/components/TestTest'
-import BackToTop from '@/components/BackToTop'
 
 export default {
   name: 'Test',
   components: {
-    TestTest,
-    BackToTop
+    TestTest
   },
   mixins: [],
   props: {},
@@ -245,6 +244,9 @@ export default {
           duration: 3 * 1000
         })
       })
+    },
+    goTo() {
+      this.$router.push('/form/index')
     }
   }
 }

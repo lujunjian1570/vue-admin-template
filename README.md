@@ -1,4 +1,4 @@
-# vue-admin-template
+# template-web
 
 > 这是一个后台管理系统。
 
@@ -9,7 +9,7 @@
 git clone https://github.com/lujunjian1570/vue-admin-template.git
 
 # 进入项目目录
-cd vue-admin-template
+cd template-web
 
 # 安装依赖
 npm install

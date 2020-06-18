@@ -23,6 +23,7 @@ import Http from '@/api'
 import Utils from '@/utils'
 
 import Pagination from '@/components/Pagination'
+import BackToTop from '@/components/BackToTop'
 
 // mock模拟数据
 if (process.env.NODE_ENV === 'production') {
@@ -47,6 +48,7 @@ Vue.prototype.$Utils = Utils
 
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
+Vue.component('BackToTop', BackToTop)
 
 Vue.config.productionTip = false
 

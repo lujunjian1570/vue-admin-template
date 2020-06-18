@@ -19,7 +19,7 @@ const navList = [{
       path: 'index',
       name: 'Form',
       component: 'form/index',
-      meta: { title: 'Form', icon: 'form' }
+      meta: { title: '表单', icon: 'form' }
     }
   ]
 }, {
@@ -28,7 +28,7 @@ const navList = [{
   redirect: '/nested/menu1',
   name: 'Nested',
   meta: {
-    title: 'Nested',
+    title: '多级列表',
     icon: 'nested'
   },
   children: [
@@ -86,7 +86,7 @@ const navList1 = []
 
 export default [
   {
-    url: '/vue-admin-template/table/list',
+    url: '/template-web/table/list',
     type: 'get',
     response: config => {
       const items = data.items
@@ -100,7 +100,7 @@ export default [
     }
   },
   {
-    url: '/vue-admin-template/table/getNavList',
+    url: '/template-web/table/getNavList',
     type: 'get',
     response: config => {
       return {

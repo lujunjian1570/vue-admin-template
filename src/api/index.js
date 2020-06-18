@@ -3,7 +3,7 @@ import request from '@/utils/request'
 const BASE_API = {
   login(data) {
     return request({
-      url: '/vue-admin-template/user/login',
+      url: '/template-web/user/login',
       method: 'post',
       data
     })
@@ -11,7 +11,7 @@ const BASE_API = {
 
   getInfo(token) {
     return request({
-      url: '/vue-admin-template/user/info',
+      url: '/template-web/user/info',
       method: 'get',
       params: { token }
     })
@@ -19,21 +19,21 @@ const BASE_API = {
 
   logout() {
     return request({
-      url: '/vue-admin-template/user/logout',
+      url: '/template-web/user/logout',
       method: 'post'
     })
   },
   // 获取左侧导航数据
   getNavList(params) {
     return request({
-      url: '/vue-admin-template/table/getNavList',
+      url: '/template-web/table/getNavList',
       method: 'get',
       params
     })
   },
   getArticleList(params) {
     return request({
-      url: '/vue-admin-template/article/list',
+      url: '/template-web/article/list',
       method: 'get',
       params
     })

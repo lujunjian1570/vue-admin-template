@@ -26,15 +26,15 @@ for (let i = 0; i < count; i++) {
     platforms: ['a-platform']
   }))
 }
-function tab(date1,date2){
-  const oDate1 = new Date(date1);
-  const oDate2 = new Date(date2);
+function tab(date1, date2) {
+  const oDate1 = new Date(date1)
+  const oDate2 = new Date(date2)
   return oDate2 - oDate1
 }
 
 export default [
   {
-    url: '/vue-admin-template/article/list',
+    url: '/template-web/article/list',
     type: 'get',
     response: config => {
       const { importance, status, author, page = 1, limit = 20, sort, startTime, endTime } = config.query
@@ -43,8 +43,8 @@ export default [
         if (importance && item.importance !== +importance) return false
         if (status && item.status !== status) return false
         if (author && item.author.indexOf(author) < 0) return false
-        if (startTime && tab(startTime,item.display_time) < 0) return false
-        if (endTime && tab(item.display_time,endTime) < 0) return false
+        if (startTime && tab(startTime, item.display_time) < 0) return false
+        if (endTime && tab(item.display_time, endTime) < 0) return false
         return true
       })
 
@@ -65,7 +65,7 @@ export default [
   },
 
   {
-    url: '/vue-admin-template/article/detail',
+    url: '/template-web/article/detail',
     type: 'get',
     response: config => {
       const { id } = config.query
@@ -81,7 +81,7 @@ export default [
   },
 
   {
-    url: '/vue-admin-template/article/pv',
+    url: '/template-web/article/pv',
     type: 'get',
     response: _ => {
       return {
@@ -99,7 +99,7 @@ export default [
   },
 
   {
-    url: '/vue-admin-template/article/create',
+    url: '/template-web/article/create',
     type: 'post',
     response: _ => {
       return {
@@ -110,7 +110,7 @@ export default [
   },
 
   {
-    url: '/vue-admin-template/article/update',
+    url: '/template-web/article/update',
     type: 'post',
     response: _ => {
       return {

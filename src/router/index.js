@@ -65,7 +65,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      meta: { title: '首页', icon: 'dashboard', affix: true }
     }]
   },
 
@@ -74,19 +74,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: '例子', icon: 'example' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: '表格', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: '树形结构', icon: 'tree' }
       }
     ]
   },
@@ -183,6 +183,7 @@ export const constantRoutes = [
     path: '/test-test',
     component: Layout,
     redirect: '/test-test/index',
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -199,7 +200,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'https://www.baidu.com',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: '外部链接', icon: 'link' }
       }
     ]
   }
