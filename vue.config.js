@@ -33,7 +33,7 @@ const externals = {
 const cdn = {
   // 开发环境
   dev: {
-    css: ['https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css'],
+    css: [],
     js: ['https://cdn.bootcss.com/babel-polyfill/7.8.3/polyfill.min.js']
   },
   // 生产环境

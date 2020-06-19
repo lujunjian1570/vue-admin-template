@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { title } from '@/settings'
+import { title } from '@/settings'
 export default {
   name: 'SidebarLogo',
   props: {

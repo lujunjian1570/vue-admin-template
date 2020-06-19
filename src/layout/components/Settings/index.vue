@@ -67,7 +67,7 @@ export default {
           value: val
         })
       }
-    },
+    }
   },
   methods: {
     themeChange(val) {

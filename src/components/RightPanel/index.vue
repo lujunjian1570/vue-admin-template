@@ -37,7 +37,7 @@ export default {
     },
     theme() {
       return this.$store.state.settings.theme
-    },
+    }
   },
   watch: {
     show(value) {
