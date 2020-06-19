@@ -6,5 +6,7 @@ module.exports = {
   // sidebar是否显示logo
   sidebarLogo: true,
   // 是否显示tagsView
-  showTagsView: false
+  showTagsView: true,
+  // 是否显示设置
+  showSettings: false
 }
