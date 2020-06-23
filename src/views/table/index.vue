@@ -27,13 +27,16 @@
       </el-form-item>
       <el-form-item label="创建时间：">
         <el-date-picker
+          type="datetimerange"
           v-model="dateRange"
+          format="yyyy-MM-dd"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          :default-time="['00:00:00','23:59:59']"
           style="width: 240px"
-          value-format="yyyy-MM-dd"
-          type="daterange"
-          range-separator="-"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
+          range-separator="至"
+          clearable
         />
       </el-form-item>
       <el-form-item>
@@ -203,9 +206,9 @@ export default {
     getList() {
       // this.listLoading = true
       const params = this.listQuery
-      params.startTime = this.dateRange[0] ? `${this.dateRange[0]} 00:00:00` : undefined
-      params.endTime = this.dateRange[1] ? `${this.dateRange[1]} 23:59:59` : undefined
-      this.$Http.getArticleList(params).then(response => {
+      params.startTime = this.dateRange[0]
+      params.endTime = this.dateRange[1]
+      this.$Http.getArticleList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // this.listLoading = false

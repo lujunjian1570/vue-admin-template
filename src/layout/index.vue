@@ -12,6 +12,8 @@
         <settings />
       </right-panel>
     </div>
+    <!--  防止刷新后主题丢失  -->
+    <Theme v-show="false" ref="theme" />
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import { mapState } from 'vuex'
 import RightPanel from '@/components/RightPanel'
 import { Navbar, Sidebar, AppMain, TagsView, Settings } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
+import Theme from '@/components/ThemePicker'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'Layout',
@@ -29,7 +33,8 @@ export default {
     AppMain,
     TagsView,
     RightPanel,
-    Settings
+    Settings,
+    Theme
   },
   mixins: [ResizeMixin],
   computed: {
@@ -47,6 +52,15 @@ export default {
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
+    }
+  },
+  mounted() {
+    if (Cookies.get('theme')) {
+      this.$refs.theme.theme = Cookies.get('theme')
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'theme',
+        value: Cookies.get('theme')
+      })
     }
   },
   methods: {
