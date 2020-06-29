@@ -9,6 +9,7 @@
     "build": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "lint": "eslint --ext .js,.vue src",
+    "lintfix": "eslint --fix --ext .js,.vue src",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {

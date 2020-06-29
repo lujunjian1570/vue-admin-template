@@ -27,8 +27,8 @@
       </el-form-item>
       <el-form-item label="创建时间：">
         <el-date-picker
-          type="datetimerange"
           v-model="dateRange"
+          type="datetimerange"
           format="yyyy-MM-dd"
           value-format="yyyy-MM-dd HH:mm:ss"
           :default-time="['00:00:00','23:59:59']"

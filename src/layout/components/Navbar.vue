@@ -6,9 +6,9 @@
 
     <div class="right-menu">
       <screen-full id="screenfull" class="right-menu-item hover-effect" />
-      <el-tooltip content="布局大小" effect="dark" placement="bottom">
+      <!--<el-tooltip content="布局大小" effect="dark" placement="bottom">
         <size-select id="size-select" class="right-menu-item hover-effect" />
-      </el-tooltip>
+      </el-tooltip>-->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar" class="user-avatar">
@@ -21,7 +21,7 @@
           <a target="_blank" href="https://github.com">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
-          <el-dropdown-item @click.native="setting = true">布局设置</el-dropdown-item>
+          <!--<el-dropdown-item @click.native="setting = true">布局设置</el-dropdown-item>-->
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出</span>
           </el-dropdown-item>
