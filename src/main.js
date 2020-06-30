@@ -6,6 +6,9 @@ import 'normalize.css/normalize.css'
 // import 'element-ui/lib/theme-chalk/index.css'
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+import FormMaking from 'form-making'
+import 'form-making/dist/FormMaking.css'
+
 import VueLazyLoad from 'vue-lazyload'
 
 import Cookies from 'js-cookie'
@@ -42,6 +45,8 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(Element, {
   size: Cookies.get('size') || 'small' // set element-ui default size
 })
+
+Vue.use(FormMaking)
 
 // 图片懒加载
 Vue.use(VueLazyLoad, {

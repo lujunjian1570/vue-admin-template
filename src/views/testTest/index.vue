@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
-    测试
+    测试{{this.$route.query.a}}
+    <div v-if="this.$route.query.a == '1'">ad</div>
     <div>
       <img v-lazy="picUrl" class="item-pic" alt="img">
     </div>
@@ -20,6 +21,22 @@
         <el-button @click="downLoad">downLoad</el-button>
       </div>
     </div>
+    <div style="margin-top: 30px">
+      <fm-making-form ref="makingForm" style="height: 500px;" preview generate-code generate-json clearable>
+        <template slot="action">
+          <el-button type="text" @click="setJson">设置json</el-button>
+          <el-button type="text" @click="getJson">获取json</el-button>
+        </template>
+      </fm-making-form>
+    </div>
+    <div style="margin-top: 30px">
+      <fm-generate-form
+        :data="jsonData"
+        :remote="remoteFuncs"
+        :value="values"
+        ref="generateForm">
+      </fm-generate-form>
+    </div>
   </div>
 </template>
 
@@ -27,6 +44,7 @@
 import draggable from 'vuedraggable'
 import Clipboard from 'clipboard'
 import { saveAs } from 'file-saver'
+
 export default {
   name: 'TestTest',
   components: {
@@ -57,7 +75,42 @@ export default {
           id: 5,
           name: 'draggable5'
         }
-      ]
+      ],
+      jsonData: {
+        "list":[
+          {
+            "type":"input",
+            "icon":"icon-input",
+            "options":{
+              "width":"100%",
+              "defaultValue":"",
+              "required":false,
+              "dataType":"string",
+              "pattern":"",
+              "placeholder":"",
+              "disabled":false,
+              "remoteFunc":"func_1593508328000_81868"
+            },
+            "name":"单行文本",
+            "key":"1593508328000_81868",
+            "model":"input_1593508328000_81868",
+            "rules":[
+              {
+                "type":"string",
+                "message":"单行文本格式不正确"
+              }
+            ]
+          }
+        ],
+        "config":
+          {
+            "labelWidth":100,
+            "labelPosition":"right",
+            "size":"small"
+          }
+      },
+      values: {},
+      remoteFuncs: {}
     }
   },
   mounted() {
@@ -96,6 +149,14 @@ export default {
       const fileName = this.orderData
       const blob = new Blob([codeStr], { type: 'text/plain;charset=utf-8' })
       saveAs(blob, fileName)
+    },
+    // 获取设计器json数据
+    getJson () {
+      alert(JSON.stringify(this.$refs.makingForm.getJSON()))
+    },
+    // 设置设计器json数据
+    setJson() {
+      this.$refs.makingForm.setJSON(JSON.parse('{"list":[{"type":"input","icon":"icon-input","options":{"width":"100%","defaultValue":"","required":false,"dataType":"string","pattern":"","placeholder":"","disabled":false,"remoteFunc":"func_1593508328000_81868"},"name":"单行文本","key":"1593508328000_81868","model":"input_1593508328000_81868","rules":[{"type":"string","message":"单行文本格式不正确"}]}],"config":{"labelWidth":100,"labelPosition":"right","size":"small"}}'))
     }
   }
 }
